@@ -1,2 +1,2 @@
 # tools
-A set of Python tools for PIRENEA
+A set of Python tools for PIRENEA.
