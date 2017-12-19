@@ -86,13 +86,13 @@ if __name__ == '__main__':
         if "A" in c.upper():
             """ Add a prefix """
             prefix = input("Choose a prefix to rename files (P0, P1, P2): ")
-            print("Your input prefix is: {} ", prefix)
+            print("Your input prefix is: {} ".format(prefix))
             p.add_prefix(prefix)
             print("... renaming with prefix is DONE !")
         elif "R" in c.upper():
             """ Remove a prefix """
             prefix = input("Choose a prefix to remove (P0, P1, P2): ")
-            print("Your input prefix is: {} ", prefix)
+            print("Your input prefix is: {} ".format(prefix))
             p.remove_prefix(prefix)
             print("... removing the prefix is DONE !")
 
