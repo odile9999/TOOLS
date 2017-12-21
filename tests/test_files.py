@@ -8,9 +8,7 @@
 
 tests.test_files Created on 18 dec. 2017
 """
-
 import unittest
-
 from src.files import PireneaFiles
 
 
@@ -36,6 +34,7 @@ class PireneaFilesTestCase(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.pirenea.__init__(self.folder)
             self.pirenea.remove_prefix(self.empty)
+
 
 if __name__ == "__main__":
     unittest.main()
