@@ -28,6 +28,9 @@ class PireneaFiles(object):
     def add_prefix(self, prefix="P0"):
         """
         Search all files recursively and add a prefix to them.
+        P0 : PIRENEA files produced with the Villa setup
+        P1 : PIRENEA files produced from the IRAP setup
+        P2 : PIRENEA files produced from the PILAB setup
         """
         self.__check_prefix(prefix)
         prefix += "_"
@@ -38,7 +41,7 @@ class PireneaFiles(object):
 
     def remove_prefix(self, prefix="P0"):
         """
-        Search all files recursively and remove their setup prefix.
+        Search all files recursively and remove their prefix.
         """
         self.__check_prefix(prefix)
         prefix += "_"
@@ -51,9 +54,6 @@ class PireneaFiles(object):
     def __check_prefix(self, prefix="P0"):
         """
         Check if a prefix is valid.
-        P0 : PIRENEA files produced with the Villa setup
-        P1 : PIRENEA files produced from the IRAP setup
-        P2 : PIRENEA files produced from the PILAB setup
         """
         prefix_list = {"P0", "P1", "P2"}
         if prefix not in prefix_list:
