@@ -8,32 +8,42 @@
 
 tests.test_files Created on 18 dec. 2017
 """
+import os
+import tempfile
 import unittest
+
 from src.files import PireneaFiles
 
 
 class PireneaFilesTestCase(unittest.TestCase):
 
     def setUp(self):
-        """Call before every test case."""
-        self.pirenea = PireneaFiles()
-        self.folder = "D:/PIRENEA/DATA_1"
-        self.bad_folder = "c:/documents"
-        self.empty = ""
+        """Called before test case."""
+        self.bad_prefix = "P3"
+        self.nonexist = "PIRENEA_DATA"
 
-    def test_add_prefix(self):
+    def test_check_input(self):
+        """Wrong directory."""
         with self.assertRaises(ValueError):
-            self.pirenea.__init__(self.bad_folder)
+            with tempfile.TemporaryDirectory() as bad_tmpdirname:
+                self.pirenea = PireneaFiles(bad_tmpdirname)
+        """Nonexistent directory."""
         with self.assertRaises(ValueError):
-            self.pirenea.__init__(self.empty)
-        with self.assertRaises(ValueError):
-            self.pirenea.__init__(self.folder)
-            self.pirenea.add_prefix("PO")
+            self.pirenea = PireneaFiles(self.nonexist)
+        """Wrong prefix."""
+        with tempfile.TemporaryDirectory(prefix="PIRENEA_DATA") as tmpdirname:
+            self.pirenea = PireneaFiles(tmpdirname)
+            with self.assertRaises(ValueError):
+                self.pirenea.add_prefix(self.bad_prefix)
 
-    def test_remove_prefix(self):
-        with self.assertRaises(ValueError):
-            self.pirenea.__init__(self.folder)
-            self.pirenea.remove_prefix(self.empty)
+    def test_add_remove_prefix(self):
+        with tempfile.TemporaryDirectory(prefix="PIRENEA_DATA") as tmpdirname:
+            with tempfile.TemporaryFile(dir=tmpdirname) as tf:
+                self.pirenea = PireneaFiles(tmpdirname)
+                self.pirenea.add_prefix("P0")
+                self.pirenea.remove_prefix("P0")
+                """Check if temporary file ft is unchanged"""
+                self.assertTrue(os.path.isfile(tf.name))
 
 
 if __name__ == "__main__":
