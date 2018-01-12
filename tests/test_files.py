@@ -20,7 +20,7 @@ class PireneaFilesTestCase(unittest.TestCase):
     def setUp(self):
         """Called before test case."""
         self.bad_prefix = "P3"
-        self.nonexist = "PIRENEA_DATA"
+        self.nonexist = "trugludu"
 
     def test_check_input(self):
         """Wrong directory."""
@@ -42,7 +42,7 @@ class PireneaFilesTestCase(unittest.TestCase):
                 self.pirenea = PireneaFiles(tmpdirname)
                 self.pirenea.add_prefix("P0")
                 self.pirenea.remove_prefix("P0")
-                """Check if temporary file ft is unchanged"""
+                """Check if temporary file tf is unchanged"""
                 self.assertTrue(os.path.isfile(tf.name))
 
 
