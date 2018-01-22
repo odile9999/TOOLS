@@ -40,7 +40,12 @@ class PireneaFilesTestCase(unittest.TestCase):
         with tempfile.TemporaryDirectory(prefix="PIRENEA_DATA") as tmpdirname:
             with tempfile.TemporaryFile(dir=tmpdirname) as tf:
                 self.pirenea = PireneaFiles(tmpdirname)
+                # Check add prefix
                 self.pirenea.add_prefix("P0")
+                # Check if add prefix has no effect if already added
+                self.pirenea.add_prefix("P0")
+                self.pirenea.remove_prefix("P0")
+                # Check if remove prefix has no effect if file has no prefix
                 self.pirenea.remove_prefix("P0")
                 """Check if temporary file tf is unchanged"""
                 self.assertTrue(os.path.isfile(tf.name))
