@@ -36,8 +36,11 @@ class PireneaFiles(object):
         prefix += "_"
         for path, _dirs, files in os.walk(self.folder):
             for filename in files:
-                new_filename = prefix + filename
-                os.rename(os.path.join(path, filename), os.path.join(path, new_filename))
+                if filename.startswith("P"):
+                    print("File %s has already a prefix.")
+                else:
+                    new_filename = prefix + filename
+                    os.rename(os.path.join(path, filename), os.path.join(path, new_filename))
 
     def remove_prefix(self, prefix="P0"):
         """
@@ -47,9 +50,12 @@ class PireneaFiles(object):
         prefix += "_"
         for path, _dirs, files in os.walk(self.folder):
             for filename in files:
-                f = filename.split(prefix)
-                new_filename = prefix.join(f[1:])
-                os.rename(os.path.join(path, filename), os.path.join(path, new_filename))
+                if filename.startswith(prefix):
+                    f = filename.split(prefix)
+                    new_filename = prefix.join(f[1:])
+                    os.rename(os.path.join(path, filename), os.path.join(path, new_filename))
+                else:
+                    print("File {0} does not begin with prefix : {1}".format(filename, prefix[:2]))
 
     def __check_prefix(self, prefix="P0"):
         """
