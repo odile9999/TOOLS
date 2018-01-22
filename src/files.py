@@ -37,7 +37,7 @@ class PireneaFiles(object):
         for path, _dirs, files in os.walk(self.folder):
             for filename in files:
                 if filename.startswith("P"):
-                    print("File %s has already a prefix.")
+                    print("File {0} has already a prefix.".format(filename))
                 else:
                     new_filename = prefix + filename
                     os.rename(os.path.join(path, filename), os.path.join(path, new_filename))
