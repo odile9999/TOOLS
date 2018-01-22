@@ -55,7 +55,7 @@ class PireneaFiles(object):
                     new_filename = prefix.join(f[1:])
                     os.rename(os.path.join(path, filename), os.path.join(path, new_filename))
                 else:
-                    print("File {0} does not begin with prefix : {1}".format(filename, prefix[:2]))
+                    print("File {0} does not begin with prefix : {1}.".format(filename, prefix[:2]))
 
     def __check_prefix(self, prefix="P0"):
         """
