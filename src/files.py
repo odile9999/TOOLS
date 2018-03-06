@@ -22,7 +22,8 @@ class PireneaFiles(object):
         self.folder = os.path.abspath(folder)
         if not os.path.isdir(self.folder):
             raise ValueError("Not a valid directory")
-        if "PIRENEA" not in self.folder.upper() or "DATA" not in self.folder.upper():
+        if "PIRENEA" not in self.folder.upper() and "DATA" not in self.folder.upper() and \
+                "PIRENEA_manips" not in self.folder.upper():
             raise ValueError("Not a valid PIRENEA DATA directory")
 
     def add_prefix(self, prefix="P0"):
